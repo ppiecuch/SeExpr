@@ -74,7 +74,7 @@ if (Qt5_FOUND OR QT4_FOUND)
                                EXPORT_FILE_NAME SeExpr2Editor_Export.h
                                STATIC_DEFINE SeExpr2Editor_BUILT_AS_STATIC )
     else()
-        add_library(SeExpr2Editor SHARED ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
+        add_library(SeExpr2Editor STATIC ${EDITOR_CPPS} ${EDITOR_MOC_SRCS}
                     ${ANIMLIB_SRCS}
                     ${editor_parser_cpp})
     endif()
@@ -181,7 +181,7 @@ if (Qt5_FOUND OR QT4_FOUND)
                            ${CMAKE_CURRENT_SOURCE_DIR}/SeExpr2Editor.sip
                            VERBATIM)
 
-        add_library(expreditor2 SHARED sipexpreditor2part0.cpp)
+        add_library(expreditor2 STATIC sipexpreditor2part0.cpp)
         target_link_libraries(expreditor2 SeExpr2Editor ${SEEXPR_LIBRARIES}
                               ${OPENGL_LIBRARY} ${GLUT_LIBRARY} ${PYTHON_LIBRARIES})
 

@@ -28,6 +28,11 @@ enable_testing()
 
 mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY)
 
+if (APPLE)
+    set(CMAKE_PREFIX_PATH "~/Qt/5.12/clang_64")
+    set(ENABLE_QT5 ON)
+endif()
+
 ## allow more human readable "if then else" constructs
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 
@@ -92,7 +97,7 @@ endif()
 
 set(GTEST_DIR "" CACHE STRING "Where to find GTEST")
 option(ENABLE_LLVM_BACKEND "Whether to build with LLVM backend" ON)
-option(USE_PYTHON "Whether to compile python libraries" ON)
+option(USE_PYTHON "Whether to compile python libraries" OFF)
 option(BUILD_UTILS "Whether to build the utilities" ON)
 option(BUILD_DEMOS "Whether to build the demos" ON)
 option(BUILD_DOC "Whether to build the documentation" ON)
@@ -257,10 +262,10 @@ include_directories(BEFORE ${CMAKE_SOURCE_DIR}/src)
 add_subdirectory(src/SeExpr2)
 add_subdirectory(src/SeExpr2/UI)
 add_subdirectory(src/py)
-if (${BUILD_UTILS})
+if (BUILD_UTILS)
     add_subdirectory(src/utils)
 endif ()
-if (${BUILD_DEMOS})
+if (BUILD_DEMOS)
     add_subdirectory(src/demos)
 endif ()
 if (${BUILD_DOC})
